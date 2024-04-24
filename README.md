@@ -5,6 +5,6 @@ This project allows for easy management of an Oil Production field, allowing for
 of Operators, Wells, and Reports. 
 
 
-dotnet ef migrations add InitialCreate 
-dotnet ef database update
-oo
+//dotnet ef migrations add InitialCreate 
+//dotnet ef database update
+

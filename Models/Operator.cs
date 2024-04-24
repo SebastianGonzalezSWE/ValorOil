@@ -4,7 +4,7 @@ namespace Valor.Models
 {
     public class Operator
     {
-        public int Operator_ID { get; set; }
+        public int OperatorID { get; set; }
 
         [StringLength(60, MinimumLength = 3)]
         [Required]
@@ -20,6 +20,5 @@ namespace Valor.Models
 
        
         public List<Well> Wells {get; set;} = new List<Well>(); // One Operator can have many Wells  
-        public Well? Well {get; set;}// Navigation Property
     }
 }

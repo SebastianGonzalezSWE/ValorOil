@@ -4,7 +4,7 @@ namespace Valor.Models
 {
     public class Well
     {
-        public int Well_ID { get; set; }
+        public int WellID { get; set; }
 
         [StringLength(60, MinimumLength = 3)]
         [Required]
@@ -16,8 +16,9 @@ namespace Valor.Models
          [Required]
         public decimal Flow_Rate { get; set; }
 
-        public List<Report> Reports {get; set;} = new List<Report>(); // One Well can have many reports  
-        public Report? Report {get; set;}// Navigation Property
-     
+        public int OperatorID {get; set;} //FK
+        public Operator? Operator {get; set;}//Navigation
+
+         public List<Report> Reports {get; set;} = new List<Report>(); // One Well can have many Reports
     }
 }
