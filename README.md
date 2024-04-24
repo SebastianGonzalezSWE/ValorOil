@@ -7,3 +7,4 @@ of Operators, Wells, and Reports.
 
 dotnet ef migrations add InitialCreate 
 dotnet ef database update
+oo
