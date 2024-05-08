@@ -34,7 +34,7 @@ namespace ValorOil.Pages.Wells
             {
                 return Page();
             }
-
+        
             _context.Reports.Add(Report);
             _context.SaveChanges();
 

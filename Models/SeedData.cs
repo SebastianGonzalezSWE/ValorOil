@@ -361,44 +361,97 @@ namespace Valor.Models
                         Storage_Capacity = 115
                         }
                      }
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Jerry",
+                        Operator_LastName = "Rice",
+                        Email = "JR@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Chad",
+                        Operator_LastName = "Johnson",
+                        Email = "ChadJohnson@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Taysom",
+                        Operator_LastName = "Hill",
+                        Email = "TaysomHill@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Tyson",
+                        Operator_LastName = "Wright",
+                        Email = "TysonWright@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Hank",
+                        Operator_LastName = "Hill",
+                        Email = "HankHill@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Bobby",
+                        Operator_LastName = "Hill",
+                        Email = "BobbyHill@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Jim",
+                        Operator_LastName = "Brown",
+                        Email = "JimBrown@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Deion",
+                        Operator_LastName = "Sanders",
+                        Email = "DS@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "John",
+                        Operator_LastName = "Wellington",
+                        Email = "JohnWellington@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Rashee",
+                        Operator_LastName = "Kom",
+                        Email = "RK@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "John",
+                        Operator_LastName = "Elway",
+                        Email = "JohnElway@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Terry",
+                        Operator_LastName = "Bradshaw",
+                        Email = "TerryBradshaw@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Ed",
+                        Operator_LastName = "Reed",
+                        Email = "EdReed@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Joe",
+                        Operator_LastName = "Namath",
+                        Email = "JN@valor.com"
+                    },
+                     new Operator
+                    {
+                        Operator_FirstName = "Kirk",
+                        Operator_LastName = "Pierce",
+                        Email = "KirkPierce@valor.com"
                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 );
                 context.SaveChanges();

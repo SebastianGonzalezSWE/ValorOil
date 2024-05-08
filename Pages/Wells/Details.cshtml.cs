@@ -28,7 +28,7 @@ namespace ValorOil.Pages.Wells
                 return NotFound();
             }
 
-            var well = await _context.Wells.Include(w=>w.Operator).FirstOrDefaultAsync(m => m.WellID == id);
+            var well = await _context.Wells.Include(w=>w.Operator).Include(s=>s.Reports).FirstOrDefaultAsync(m => m.WellID == id);
             if (well == null)
             {
                 return NotFound();
