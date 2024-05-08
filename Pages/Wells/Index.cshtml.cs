@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Valor.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 namespace ValorOil.Pages.Wells
 {
@@ -20,6 +22,7 @@ namespace ValorOil.Pages.Wells
         }
 
         public IList<Well> Well { get;set; } = default!;
+    
         
           [BindProperty(SupportsGet = true)]
         public int PageNum {get; set;} = 1;
@@ -27,44 +30,44 @@ namespace ValorOil.Pages.Wells
 
         
         [BindProperty(SupportsGet = true)]
-        public string CurrentSort {get; set;} = string.Empty;
+        public string Sort {get; set;} = string.Empty;
         public SelectList SortList {get; set;} = default!;
-        public string CurrentFilter {get; set;} = string.Empty;
-         public string NameSort { get; set;} = string.Empty;
+        public string CFilter {get; set;} = string.Empty;
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString)
         {
-            //Well = await _context.Wells
-            // .Include(w => w.Operator).ToListAsync();
-              //CurrentFilter = SearchString;
                  if(_context.Wells != null){
-                var WellSearch = _context.Wells.Select(p=> p);
-                var query =_context.Wells.Select(w=> w);
-                 List<SelectListItem> sortItems = new List<SelectListItem> {
-                    new SelectListItem { Text = "Well Ascending", Value = "first_asc" },
-                    new SelectListItem { Text = "Well Name Descending", Value = "first_desc"}
+               // var WellOrder= _context.Wells.Select(w=>w);
+                var Order =_context.Wells.Include(w=>w.Operator).Select(w=> w);
+                 List<SelectListItem> sortItems = new List<SelectListItem>
+                  {
+                    new SelectListItem { Text = "Ascending", Value = "ASC" },
+                    new SelectListItem { Text = "Descending", Value = "DESC"}
                   };
-                SortList =  new SelectList(sortItems, "Value", "Text", CurrentSort);
-            
-            switch (CurrentSort)
+              if(!string.IsNullOrEmpty(searchString)){
+                  Order = Order.Where(w=> w.Well_Name.Contains(searchString));
+              }
+
+            SortList =  new SelectList(sortItems, "Value", "Text", Sort);
+            CFilter = searchString;
+
+            switch (Sort)
            {
-             case "first_asc": 
-            query = query.OrderBy(p => p.Well_Name);
+             case "ASC": 
+            Order = Order.OrderBy(p => p.Well_Name);
                         break;
                     
-                    case "first_desc":
-                        query = query.OrderByDescending(p => p.Well_Name);
+              case "DESC":
+                        Order = Order.OrderByDescending(p => p.Well_Name);
                         break;
+              case "Well_Name":
+              Order = Order.OrderBy(w=> w.Well_Name);
+            break;
            }
-            switch (CurrentFilter)
-            {
-                case "WellName":
-                WellSearch = WellSearch.OrderBy(s => s.Well_Name);
-                break;
-            }
            
-           Well = await query.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
            
+           Well = await Order.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
+  
             }
         }
     }

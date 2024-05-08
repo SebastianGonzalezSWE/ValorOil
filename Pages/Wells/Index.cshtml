@@ -14,42 +14,37 @@
 </p>
 <p>
 <form>
-   <select asp-for="CurrentSort"asp-items="Model.SortList">
+   <select asp-for="Sort"asp-items="Model.SortList">
     <option value="">Sort by</option>
    </select> 
    <button type="submit">Sort</button>
 </form>
 </p>
-<p>
-   <form asp-page="./Index" method="get">
+<form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
-            <input type="text" name="WellName" value="@Model.CurrentFilter" />
+            <input type="text" name="SearchString" value="@Model.CFilter" />
             <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to Well List</a>
         </p>
     </div>
 </form>
-</p>
-
-
 <table class="table">
     <thead>
         <tr>
             <th>
             @{
-            var firstSort = "first_asc";
-            var Sort = "WellName";
-            if (Model.CurrentSort == "first_asc")
+            var Nsort = "Well_Name";
+            var FSort = "ASC";
+            if (Model.Sort == "ASC")
             {
-                firstSort = "first_desc";
-            }    
+            FSort = "DESC";
+            }else{
+            Nsort = "Well_Name";
+            }   
             }
-            <a asp-page="./Index" asp-route-CurrentSort="@firstSort">@Html.DisplayNameFor(model => model.Well[0].Well_Name)</a>
-            </th>
-            
-             <!-- <th><a asp-page="./Index" asp-route-currentFilter="@Sort">@Html.DisplayNameFor(model => model.Well[0].Well_Name) </a></th> -->
-            <th>
-                @Html.DisplayNameFor(model => model.Well[0].Well_Name)
+            <a asp-page="./Index" asp-route-Sort="@FSort" asp-route-Sort="@Nsort"
+            >@Html.DisplayNameFor(model => model.Well[0].Well_Name)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Well[0].Storage_Capacity)
@@ -60,7 +55,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Well[0].Operator)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -76,7 +70,7 @@
                 @Html.DisplayFor(modelItem => item.Flow_Rate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Operator.Email)
+                @Html.DisplayFor(modelItem => item.Operator.Operator_FirstName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.WellID">Edit</a> |
@@ -88,15 +82,15 @@
     </tbody>
 </table>
 @{
-    var prevDisabled = "";
+    var Disable = "";
     if (Model.PageNum <= 1)
     {
-        prevDisabled = "disabled";
+        Disable = "disabled";
     }
 }
 <nav aria-label="Page Nav">
     <ul class="pagination">
-        <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+        <li class="page-item @Disable"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
         <li class="page-item"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
     </ul>
 </nav>

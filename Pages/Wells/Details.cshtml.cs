@@ -19,6 +19,7 @@ namespace ValorOil.Pages.Wells
         }
 
         public Well Well { get; set; } = default!;
+        //public Operator Operator {get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,7 +28,7 @@ namespace ValorOil.Pages.Wells
                 return NotFound();
             }
 
-            var well = await _context.Wells.FirstOrDefaultAsync(m => m.WellID == id);
+            var well = await _context.Wells.Include(w=>w.Operator).FirstOrDefaultAsync(m => m.WellID == id);
             if (well == null)
             {
                 return NotFound();

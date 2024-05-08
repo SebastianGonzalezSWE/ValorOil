@@ -31,7 +31,7 @@ public class ReportModel : PageModel
     {
         Reports = _context.Reports.ToList();
         
-        ReportsDropDown = new SelectList(Reports, "ReportID","ReportParagraph");
+        ReportsDropDown = new SelectList(Reports, "ReportID","ReportID");
 
         
     }
