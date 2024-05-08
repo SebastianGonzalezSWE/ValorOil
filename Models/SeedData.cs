@@ -33,23 +33,13 @@ namespace Valor.Models
                         {   
                         Well_Name = "Lucky Seven Ranch Lease #1",
                         Flow_Rate = 78,
-                        Storage_Capacity = 10,
-                        Reports = new List<Report>{
-                    new Report{
-                        ReportParagraph = "Leaking Produced Water"
-                        }
-                            }
+                        Storage_Capacity = 10
                         },
                       new Well 
                         {   
                         Well_Name = "Lucky Seven Lease #2",
                         Flow_Rate = 12,
                         Storage_Capacity = 100,
-                        Reports = new List<Report>{
-                    new Report{
-                        ReportParagraph = "No danger signs!"
-                        }
-                            }
                         }
 
 
