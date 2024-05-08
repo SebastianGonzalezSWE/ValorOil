@@ -19,7 +19,7 @@ namespace Valor.Models
               
                 if (context.Operators.Any())
                 {
-                    return;   //Seeded DB
+                    return;   //DB Seeded
                 }
 
                 context.Operators.AddRange(

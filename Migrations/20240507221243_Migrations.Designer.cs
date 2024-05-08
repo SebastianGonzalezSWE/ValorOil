@@ -10,8 +10,8 @@ using Valor.Models;
 namespace ValorOil.Migrations
 {
     [DbContext(typeof(ValorContext))]
-    [Migration("20240424164300_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240507221243_Migrations")]
+    partial class Migrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,0 +1,105 @@
+@page
+@model ValorOil.Pages.Wells.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <a asp-page="Create">Add Well</a>
+</p>
+<p>
+    <a asp-page="AddReport">Add Report</a>
+</p>
+<p>
+<form>
+   <select asp-for="CurrentSort"asp-items="Model.SortList">
+    <option value="">Sort by</option>
+   </select> 
+   <button type="submit">Sort</button>
+</form>
+</p>
+<p>
+   <form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+        </p>
+    </div>
+</form>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            @{
+            var firstSort = "first_asc";
+            if (Model.CurrentSort == "first_asc")
+            {
+                firstSort = "first_desc";
+            }    
+            }
+            <a asp-page="./Index" asp-route-CurrentSort="@firstSort">@Html.DisplayNameFor(model => model.Well[0].Well_Name)</a>
+            </th>
+            <th>
+              <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                asp-route-currentFilter="@Model.CurrentFilter">
+                @Html.DisplayNameFor(model => model.Well[0].Well_Name)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Well[0].Well_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Well[0].Storage_Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Well[0].Flow_Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Well[0].Operator)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Well) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Well_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Storage_Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flow_Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Operator.Email)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.WellID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.WellID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.WellID">Delete</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = "";
+    if (Model.PageNum <= 1)
+    {
+        prevDisabled = "disabled";
+    }
+}
+<nav aria-label="Page Nav">
+    <ul class="pagination">
+        <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+        <li class="page-item"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+    </ul>
+</nav>
