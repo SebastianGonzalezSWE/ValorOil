@@ -24,7 +24,7 @@
    <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
-            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="text" name="WellName" value="@Model.CurrentFilter" />
             <input type="submit" value="Search" class="btn btn-primary" /> |
         </p>
     </div>
@@ -38,6 +38,7 @@
             <th>
             @{
             var firstSort = "first_asc";
+            var Sort = "WellName";
             if (Model.CurrentSort == "first_asc")
             {
                 firstSort = "first_desc";
@@ -45,12 +46,8 @@
             }
             <a asp-page="./Index" asp-route-CurrentSort="@firstSort">@Html.DisplayNameFor(model => model.Well[0].Well_Name)</a>
             </th>
-            <th>
-              <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
-                asp-route-currentFilter="@Model.CurrentFilter">
-                @Html.DisplayNameFor(model => model.Well[0].Well_Name)
-                </a>
-            </th>
+            
+             <!-- <th><a asp-page="./Index" asp-route-currentFilter="@Sort">@Html.DisplayNameFor(model => model.Well[0].Well_Name) </a></th> -->
             <th>
                 @Html.DisplayNameFor(model => model.Well[0].Well_Name)
             </th>

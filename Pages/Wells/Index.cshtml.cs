@@ -30,6 +30,7 @@ namespace ValorOil.Pages.Wells
         public string CurrentSort {get; set;} = string.Empty;
         public SelectList SortList {get; set;} = default!;
         public string CurrentFilter {get; set;} = string.Empty;
+         public string NameSort { get; set;} = string.Empty;
 
         public async Task OnGetAsync()
         {
@@ -37,6 +38,7 @@ namespace ValorOil.Pages.Wells
             // .Include(w => w.Operator).ToListAsync();
               //CurrentFilter = SearchString;
                  if(_context.Wells != null){
+                var WellSearch = _context.Wells.Select(p=> p);
                 var query =_context.Wells.Select(w=> w);
                  List<SelectListItem> sortItems = new List<SelectListItem> {
                     new SelectListItem { Text = "Well Ascending", Value = "first_asc" },
@@ -57,7 +59,7 @@ namespace ValorOil.Pages.Wells
             switch (CurrentFilter)
             {
                 case "WellName":
-                WellSearch = WellSearch.OrderByDescending(s => s.Well_Name);
+                WellSearch = WellSearch.OrderBy(s => s.Well_Name);
                 break;
             }
            

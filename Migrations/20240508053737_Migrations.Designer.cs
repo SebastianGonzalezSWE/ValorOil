@@ -10,7 +10,7 @@ using Valor.Models;
 namespace ValorOil.Migrations
 {
     [DbContext(typeof(ValorContext))]
-    [Migration("20240507221243_Migrations")]
+    [Migration("20240508053737_Migrations")]
     partial class Migrations
     {
         /// <inheritdoc />
